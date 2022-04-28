@@ -4,8 +4,10 @@
 <head>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,29 +23,35 @@
 
 <body>
   <title>Ratcipes</title>
-  <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 <nav>
   <div class="nav-wrapper">
-    <a href="./Landing.html" class="brand-logo">Ratcipes</a>
+    <a href="./index.html" class="brand-logo">Ratcipes</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="./Browse.html">Browse</a></li>
       <li><a href="./Saved.html">Saved</a></li>
       <li><a href="./Profile.html">Profile</a></li>
-      <li><a href="./LoginLogout.html">Login/Logout</a></li>
+      <li><a href="./index.html">Login/Logout</a></li>
     </ul>
   </div>
 </nav>
 
 
-<body>
+<body class="orange lighten-5">
+  <input type="file" style="display:none" id="file"/>
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
           <img src="./Big Forehead.jpg">
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="document.getElementById('file').click()"><i class="material-icons">add</i></a>
         </div>
         <div class="card-content">
         </div>
@@ -52,7 +60,7 @@
 
     </div>
     <div class="left-align">
-      <h1>BigMa27</h1>
+      <h1 id="usernameH1">BigMa27</h1>
       <div class="right-align">
 
         <div class="container">
@@ -67,17 +75,52 @@
                 <label for="email">Change Email</label>
               </div>
               <div class="center-align">
-                <a class="waves-effect waves-red btn-flat">Change Password</a></a>
+                <a class="waves-effect waves-red btn-flat modal-trigger" href="#passwordM">Change Password</a></a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="center-align">
-        <button class="btn-large red waves-effect waves-red">Save</button>
+        <button id="save" class="btn-large red waves-effect waves-red" style="padding-left: 5rem; padding-right: 5rem;">Save</button>
       </div>
     </div>
+    <!-- Modal Structure -->
+    <div id="passwordM" class="modal">
+      <div class="modal-content">
+        <h4>Change Password</h4>
+        <div class="input-field">
+          <input id="password" type="password" class="validate" />
+          <label for="password">Current Password</label>
+        </div>
+        <div class="input-field">
+          <input id="password1" type="password" class="validate" />
+          <label for="password1">New Password</label>
+        </div>
+        <div class="input-field">
+          <input id="password2" type="password" class="validate" />
+          <label for="password2">Confirm New Password</label>
+        </div>
+        <a onclick="M.toast({html: 'Password Changed!', classes: 'rounded'})" id="passSub" class="waves-effect waves-light btn"
+            >Submit</a
+          >
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('.modal').modal()
+      })
+      $(document.getElementById('passSub')).click(() => {
+        $('#passwordM').modal('close')
+      })
+      document.getElementById('save').addEventListener('click', () => {
+        let title = document.getElementById('usernameH1')
+        if (document.getElementById('username').value != '') {
+          title.innerText = document.getElementById('username').value
+        }
+        M.toast({ html: 'Profile updated!', classes: 'rounded' })
+      })
+    </script>
 </body>
 
 </html>
