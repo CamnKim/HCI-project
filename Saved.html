@@ -4,26 +4,29 @@
 <head>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <!-- Compiled and minified CSS -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+/>
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <title>Ratcipes</title>
-  <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 <nav>
   <div class="nav-wrapper">
-    <a href="./Landing.html" class="brand-logo">Ratcipes</a>
+    <a href="./index.html" class="brand-logo">Ratcipes</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="./Browse.html">Browse</a></li>
       <li><a href="./Saved.html">Saved</a></li>
       <li><a href="./Profile.html">Profile</a></li>
-      <li><a href="./LoginLogout.html">Login/Logout</a></li>
+      <li><a href="./index.html">Login/Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -36,23 +39,38 @@
       </div>  
       <li class="collection-item avatar">
         <img src="./Boiled Rocks.jpg" alt="" class="circle responsive-img">
-        <span class="title">Boiled Rocks</span>
+        <h5>Boiled Rocks</h5>
         <p>Organic, Natural, Healthy, Trendy <br>
           This all natural, organic dish made of items around your house will blow you away!
         </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">turned_in</i></a>
+        <a href="#!" class="secondary-content savedIcon"><i class="material-icons">turned_in</i></a>
       </li>
       <li class="collection-item avatar">
         <img src="./MinecraftCake.jpg" alt="" class="circle">
-        <span class="title">Cake</span>
+        <h5>Cake</h5>
         <p>Neat, Fun, Kid-Friendly <br>
           Do you like squares? Cubes? Do we have the recipe for you!
         </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">turned_in</i></a>
+        <a href="#!" class="secondary-content savedIcon"><i class="material-icons">turned_in</i></a>
       </li>
       </li>
     </ul>
   </div>
+  <script>
+    let saved = document.querySelectorAll('.savedIcon')
+    console.log(saved)
+    saved.forEach(element => {
+      element.addEventListener('click', e => {
+        if (e.target.innerText === 'turned_in') {
+          e.target.innerText = 'turned_in_not'
+          M.toast({ html: 'Unsaved', classes: 'rounded' })
+        } else {
+          e.target.innerText = 'turned_in'
+          M.toast({ html: 'Saved', classes: 'rounded' })
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>
